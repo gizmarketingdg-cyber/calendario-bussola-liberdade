@@ -1,0 +1,664 @@
+# 📅 CALENDÁRIO EDITORIAL BÚSSOLA
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário Editorial - Bússola da Liberdade | Nov-Dez 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #f48fb1 0%, #d4a5a5 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* INFO CARDS */
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #f48fb1;
+        }
+
+        .info-card h3 {
+            color: #d4a5a5;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* NAVEGAÇÃO */
+        nav {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #f48fb1 0%, #d4a5a5 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(244, 143, 177, 0.3);
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 143, 177, 0.5);
+        }
+
+        /* SECTIONS */
+        .month-section {
+            margin-bottom: 50px;
+        }
+
+        .month-header {
+            background: linear-gradient(135deg, #f48fb1 0%, #d4a5a5 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .month-header h2 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        /* POST CARDS */
+        .post-card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 6px solid #f48fb1;
+            transition: all 0.3s ease;
+        }
+
+        .post-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateX(5px);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .post-date {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #f48fb1;
+        }
+
+        .post-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: white;
+        }
+
+        .badge-topo { background: #42a5f5; }
+        .badge-meio { background: #ffa726; }
+        .badge-fundo { background: #66bb6a; }
+        .badge-educativo { background: #7e57c2; }
+        .badge-vendas { background: #ef5350; }
+        .badge-engajamento { background: #26a69a; }
+        .badge-comemorativo { background: #ec407a; }
+
+        .post-title {
+            font-size: 1.6em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .post-format {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .post-copy {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .post-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f5f5f5;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: #f48fb1;
+        }
+
+        /* WHATSAPP SECTION */
+        .whatsapp-section {
+            background: #25d366;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .whatsapp-card {
+            background: white;
+            color: #333;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-card h4 {
+            color: #25d366;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .whatsapp-message {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #f48fb1 0%, #d4a5a5 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .post-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SCROLL TO TOP */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #f48fb1;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header>
+            <h1>🧭 CALENDÁRIO EDITORIAL</h1>
+            <p>Bússola da Liberdade | Novembro - Dezembro 2025</p>
+        </header>
+
+        <!-- INFO CARDS -->
+        <div class="info-section">
+            <div class="info-card">
+                <h3>📅 Período</h3>
+                <ul>
+                    <li><strong>Início:</strong> 16 de Novembro</li>
+                    <li><strong>Término:</strong> 31 de Dezembro</li>
+                    <li><strong>Duração:</strong> 46 dias</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>📱 Conteúdo</h3>
+                <ul>
+                    <li><strong>Posts Feed:</strong> 40 posts</li>
+                    <li><strong>Mensagens WhatsApp:</strong> 12 mensagens</li>
+                    <li><strong>Stories:</strong> Diários</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🎯 Produtos</h3>
+                <ul>
+                    <li><strong>Workshop:</strong> R$ 47,00 (14/12)</li>
+                    <li><strong>Bússola:</strong> R$ 1.497 (Jan/2026)</li>
+                    <li><strong>Vagas Bússola:</strong> 12 apenas</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🎨 Distribuição</h3>
+                <ul>
+                    <li><strong>Educativo:</strong> 40%</li>
+                    <li><strong>Vendas:</strong> 30%</li>
+                    <li><strong>Engajamento:</strong> 25%</li>
+                    <li><strong>Comemorativo:</strong> 5%</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NAVEGAÇÃO -->
+        <nav>
+            <ul>
+                <li><a href="#novembro">📆 Novembro</a></li>
+                <li><a href="#dezembro">📆 Dezembro</a></li>
+                <li><a href="#whatsapp">💬 WhatsApp</a></li>
+            </ul>
+        </nav>
+
+        <!-- NOVEMBRO -->
+        <section id="novembro" class="month-section">
+            <div class="month-header">
+                <h2>📆 NOVEMBRO 2025</h2>
+                <p>12 posts | Aquecimento + Lançamento Workshop</p>
+            </div>
+
+            <!-- POST 01 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-date">18/11 (Segunda)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-topo">🔵 Topo</span>
+                        <span class="badge badge-educativo">📚 Educativo</span>
+                    </div>
+                </div>
+                <h3 class="post-title">3 sinais de que você precisa parar e planejar sua vida</h3>
+                <p class="post-format">Formato: Carrossel (5 slides)</p>
+                
+                <div class="post-copy">Sabe aquele sentimento de que sua vida tá passando e você só tá... existindo?
+
+Você trabalha, cumpre obrigações, cuida de todo mundo...
+Mas quando para pra pensar: "E EU? O que EU quero?"
+
+Você não sabe responder.
+
+E aí vem o final do ano, você faz aquela listinha de metas...
+E em março você já esqueceu tudo.
+
+Se você tá cansada disso, preciso te falar uma coisa:
+
+👉 O problema não é você.
+👉 O problema é que ninguém te ensinou a PLANEJAR de verdade.
+
+Planejar não é só fazer lista.
+É conectar com seu propósito.
+É ouvir Deus.
+É transformar sonhos em AÇÕES.
+
+E nos próximos dias, eu vou te mostrar como fazer isso.
+
+Salva esse post. Vai fazer sentido em breve. 🧭
+
+#autoconhecimento #planejamento #proposito #mulheresdefe</div>
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">CTA:</span>
+                        <span>Salvar post</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Stories:</span>
+                        <span>Enquete sobre planejamento</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 02 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-date">19/11 (Terça)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-topo">🔵 Topo</span>
+                        <span class="badge badge-educativo">📚 Educativo</span>
+                    </div>
+                </div>
+                <h3 class="post-title">Por que você não conquista suas metas?</h3>
+                <p class="post-format">Formato: Carrossel (6 slides)</p>
+                
+                <div class="post-copy">Você já parou pra pensar PORQUE suas metas nunca saem do papel?
+
+Eu vou te contar:
+
+❌ Você define metas sem saber SEU PROPÓSITO
+Quer emagrecer? Legal. Mas PRA QUÊ? Pra que Deus te chamou?
+Quer ganhar dinheiro? Ótimo. Mas pra QUAL propósito?
+
+❌ Você NÃO OUVE DEUS
+Você senta, faz sua listinha, e esquece de perguntar:
+"Senhor, o que TU queres pra minha vida?"
+
+❌ Você NÃO AGE
+Janeiro: super empolgada
+Março: esqueceu tudo
+Dezembro: "nossa, não fiz nada"
+
+Metas precisam de 3 coisas pra funcionar:
+✨ PROPÓSITO (o porquê)
+✨ DIREÇÃO DE DEUS (o caminho)
+✨ AÇÃO (as mãos à obra)
+
+E é EXATAMENTE isso que eu vou te ensinar a fazer.
+
+Continua acompanhando que vem coisa boa por aí. 🧭
+
+#metas #proposito #planejamento #fe #acao</div>
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">CTA:</span>
+                        <span>Comentar meta não conquistada</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Stories:</span>
+                        <span>Caixinha de perguntas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 03 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-date">20/11 (Quarta)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-meio">🟡 Meio</span>
+                        <span class="badge badge-engajamento">💬 Engajamento</span>
+                    </div>
+                </div>
+                <h3 class="post-title">Qual foi a maior lição que 2025 te ensinou?</h3>
+                <p class="post-format">Formato: Imagem simples</p>
+                
+                <div class="post-copy">Tô aqui refletindo sobre 2025...
+
+E percebi que cada ano a gente aprende algo importante.
+
+Às vezes na dor.
+Às vezes na vitória.
+Às vezes no silêncio de Deus.
+
+E eu queria saber de VOCÊ:
+
+👉 Qual foi a maior lição que 2025 te ensinou?
+
+Pode ser sobre fé, relacionamentos, trabalho, autocuidado...
+
+Vem aqui nos comentários. Quero te ouvir. 💛
+
+E se você quiser, me conta também:
+O que você NÃO quer levar pra 2026?
+
+Te espero aqui embaixo! 🧭
+
+#reflexao #licoes2025 #crescimento #fe</div>
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">CTA:</span>
+                        <span>Comentar lição aprendida</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Stories:</span>
+                        <span>Responder comentários</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 04 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-date">21/11 (Quinta)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-topo">🔵 Topo</span>
+                        <span class="badge badge-educativo">📚 Educativo</span>
+                    </div>
+                </div>
+                <h3 class="post-title">Como ouvir o que Deus quer pra sua vida</h3>
+                <p class="post-format">Formato: Carrossel (6 slides)</p>
+                
+                <div class="post-copy">Quantas vezes você já perguntou:
+"Deus, o que Tu queres de mim?"
+
+Mas não parou pra OUVIR a resposta?
+
+A gente vive tão no automático, tão no barulho, que esquecemos de fazer a coisa mais importante:
+
+SILENCIAR e OUVIR.
+
+Então deixa eu te ensinar os 5 passos que EU uso pra ouvir Deus:
+
+1️⃣ SILÊNCIO - Desligue tudo e sente na presença dEle
+2️⃣ PERGUNTE - "Senhor, o que TU queres?"
+3️⃣ ANOTE - Quando algo vier, escreva
+4️⃣ CONFIRME - Teste se é realmente Deus falando
+5️⃣ OBEDEÇA - Ouvir sem agir é desobediência
+
+Salva esse post e pratica.
+
+Porque em breve eu vou te convidar pra algo onde vamos OUVIR JUNTAS o que Deus quer pra 2026.
+
+Fica ligada. 🧭
+
+#ouvirDeus #silencio #proposito #fe #obediencia</div>
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">CTA:</span>
+                        <span>Salvar post</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Stories:</span>
+                        <span>Enquete sobre silêncio com Deus</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 05 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-date">22/11 (Sexta)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-topo">🔵 Topo</span>
+                        <span class="badge badge-educativo">📚 Educativo</span>
+                    </div>
+                </div>
+                <h3 class="post-title">A diferença entre METAS e PROPÓSITO</h3>
+                <p class="post-format">Formato: Carrossel (6 slides)</p>
+                
+                <div class="post-copy">A maioria das pessoas confunde METAS com PROPÓSITO.
+
+E por isso se sente vazia mesmo quando conquista tudo.
+
+Deixa eu te explicar:
+
+📌 META = O que você quer conquistar
+"Ganhar 10 mil por mês"
+"Viajar pra Europa"
+"Emagrecer 10kg"
+
+🎯 PROPÓSITO = Por que você existe
+"Deus me chamou pra libertar mulheres"
+"Fui feita pra impactar através da minha história"
+
+O problema é que a maioria define metas SEM propósito.
+
+E aí conquista tudo... mas continua se sentindo vazia.
+
+Porque metas sem propósito = checklist.
+Você risca da lista, mas não sente realização.
+
+A ordem certa é:
+
+1️⃣ Descubra seu PROPÓSITO (por que você existe?)
+2️⃣ Defina METAS que servem a esse propósito
+3️⃣ Aja com INTENCIONALIDADE
+
+Aí sim você conquista E se realiza.
+
+Salva esse post.
+E se prepara porque eu vou te ajudar a descobrir isso. 🧭
+
+#proposito #metas #planejamento #intencionalidade #chamado</div>
+
+                <div class="post-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">CTA:</span>
+                        <span>Salvar post</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Stories:</span>
+                        <span>Explicar diferença</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POST 06 - LANÇAMENTO WORKSHOP -->
+            <div class="post-card" style="border-left-color: #ef5350;">
+                <div class="post-header">
+                    <div class="post-date">25/11 (Segunda)</div>
+                    <div class="post-badges">
+                        <span class="badge badge-fundo">🟢 Fundo</span>
+                        <span class="badge badge-vendas">🎯 LANÇAMENTO</span>
+                    </div>
+                </div>
+         
